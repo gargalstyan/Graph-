@@ -118,41 +118,29 @@ for (int i = 0; i < matrix.GetLength(0); i++)
         continue;
     matrix1[matrix[i, 0] - 1, matrix[i, 1] - 1] = 1;
 }
-//for (int i = 0; i < matrix1.GetLongLength(0); i++)
-//{
-//    for (int j = 0; j < matrix1.GetLongLength(1); j++)
-//    {
-//        Console.Write($"{matrix1[i, j]} ");
-//    }
-//    Console.WriteLine();
-//}
 
 Console.WriteLine();
 Matrix<double> matrix2 = null;
 int count = 1;
 int q = 1;
 double[,] A = matrix1;
-int t4first= T4(A);
 do
 {
     double[,] B = matrix1;
     PrintMatrix(A);
     int t4 = T4(A);
-    Console.WriteLine($"t4({q++})={t4}");
+    Console.WriteLine($"t4({q})={t4}");
+    int t7 = t4 - count;
+    Console.WriteLine($"t7({q}) = {t7}");
+    Console.WriteLine($"k_mo = {(double)t7/t4}");
+    q++;
     matrix2 = Multiply(A, B);
     A = matrix2.ToArray();
     count++;
 }
 while (!ifMatrixEqualZero(matrix2));
-Console.WriteLine(count - 1);
-//for (int i = 0; i < matrix2.RowCount; i++)
-//{
-//    for (int j = 0; j < matrix2.ColumnCount; j++)
-//    {
-//        Console.Write($"{matrix2[i, j]} ");
-//    }
-//    Console.WriteLine();
-//}
+Console.WriteLine($"A = {count - 1}");
+
 static bool ifMatrixEqualZero(Matrix<double> matrix)
 {
     for (int i = 0; i < matrix.RowCount; i++)
@@ -185,34 +173,3 @@ static void PrintMatrix(double[,] matrix)
     }
 }
 
-//FillMatrix(ints);
-//PrintMatrix(ints);
-//Console.WriteLine();
-//FillMatrix(ints1);
-//PrintMatrix(ints1);
-//Console.WriteLine();
-//int[,] res = Multiply(ints,ints1);
-//int[,] res1 = Add(ints,ints1);
-//Console.WriteLine();
-//PrintMatrix(res);
-//Console.WriteLine();
-//PrintMatrix(res1);
-
-//static int[,] Multiply(int[,] matrix1, int[,] matrix2)
-//{
-//    int[,] result = new int[matrix1.GetLength(0), matrix1.GetLength(1)];
-
-//    for (int k = 0; k < result.GetLength(0); k++)
-//    {
-//        for (int i = 0; i < result.GetLength(0); i++)
-//        {
-//            for (int j = 0; j < result.GetLength(0); j++)
-//            {
-//                result[k, i] += matrix1[k, j] * matrix2[j, i];
-
-//            }
-
-//        }
-//    }
-//    return result;
-//}
