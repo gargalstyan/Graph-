@@ -8,8 +8,8 @@ double k_mo_mij = 0;
 Console.WriteLine("Nermucel gagatneri tiv@");
 int n = int.Parse(Console.ReadLine());
 
-int[,] matrix = new int[,] { { 1, 2 }, { 1, 12 }, { 1, 16 }, { 1, 17 }, { 2, 11 }, { 2, 14 }, { 3, 6 }, { 4, 19 }, { 5, 7 }, { 6, 14 }, { 7, 0 }, { 8, 0 }, { 9, 0 }, { 10, 0 }, { 11, 18 }, { 12, 8 }, { 12, 19 }, { 13, 3 }, { 13, 11 }, { 13, 9 }, { 13, 15 }, { 14, 7 }, { 15, 19 }, { 16, 9 }, { 16, 10 }, { 17, 18 }, { 18, 0 }, { 19, 0 }, { 13, 4 }, { 13, 5 }, { 9, 19 } };
-//int[,] matrix = new int[,] { { 1, 9 }, { 2, 5 }, { 2, 4 }, { 3, 6 }, { 3, 8 }, { 3, 13 }, { 4, 7 }, { 4, 14 }, { 6, 10 }, { 7, 10 }, { 8, 16 }, { 9, 0 }, { 10, 0 }, { 11, 15 }, { 11, 12 }, { 12, 14 }, { 13, 17 }, { 14, 9 }, { 15, 8 }, { 15, 18 }, { 16, 0 }, { 17, 0 }, { 18, 16 }, { 5, 6 } };
+//int[,] matrix = new int[,] { { 1, 2 }, { 1, 12 }, { 1, 16 }, { 1, 17 }, { 2, 11 }, { 2, 14 }, { 3, 6 }, { 4, 19 }, { 5, 7 }, { 6, 14 }, { 7, 0 }, { 8, 0 }, { 9, 0 }, { 10, 0 }, { 11, 18 }, { 12, 8 }, { 12, 19 }, { 13, 3 }, { 13, 11 }, { 13, 9 }, { 13, 15 }, { 14, 7 }, { 15, 19 }, { 16, 9 }, { 16, 10 }, { 17, 18 }, { 18, 0 }, { 19, 0 }, { 13, 4 }, { 13, 5 }, { 9, 19 } };
+int[,] matrix = new int[,] { { 1, 9 }, { 2, 5 }, { 2, 4 }, { 3, 6 }, { 3, 8 }, { 3, 13 }, { 4, 7 }, { 4, 14 }, { 6, 10 }, { 7, 10 }, { 8, 16 }, { 9, 0 }, { 10, 0 }, { 11, 15 }, { 11, 12 }, { 12, 14 }, { 13, 17 }, { 14, 9 }, { 15, 8 }, { 15, 18 }, { 16, 0 }, { 17, 0 }, { 18, 16 }, { 5, 6 } };
 double[,] matrix1 = AMatrix(matrix, n, out r);
 
 static void CMatrix(double[,] matrix)
@@ -177,9 +177,11 @@ Matrix<double> matrix2 = null;
 Matrix<double> sumMatrix = null;
 int count = 1;
 int q = 1;
+double[,] sumM = new double[n, n];
 double[,] A = matrix1;
 do
 {
+    sumM = SumMatrix(sumM, A).ToArray();
     double[,] B = matrix1;
     PrintMatrix(A);
     int t4 = T4(A);
@@ -190,13 +192,12 @@ do
     k_mo_mij += (double)t7 / t4;
     q++;
     matrix2 = Multiply(A, B);
-    sumMatrix = SumMatrix(A, B);
+
     A = matrix2.ToArray();
     count++;
 }
 while (!ifMatrixEqualZero(matrix2) && CheckDiagonal(A));
-Console.WriteLine($"A = {count - 1}");
-Console.WriteLine("/////////////////////////////////");
+Console.WriteLine($"karg A = {count - 1}");
 int t6 = T6(matrix, t3);
 int t5 = T5(matrix1, t2);
 Console.WriteLine($"t5={t5}");
@@ -211,7 +212,7 @@ for (int i = 0; i < matrix1.GetLongLength(0); i++)
 {
     for (int j = 0; j < matrix1.GetLongLength(0); j++)
     {
-        Console.Write($"{sumMatrix[i, j]} ");
+        Console.Write($"{sumM[i, j]} ");
     }
     Console.WriteLine();
 }
