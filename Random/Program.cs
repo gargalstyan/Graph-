@@ -1,28 +1,43 @@
 ﻿using MathNet.Numerics.LinearAlgebra;
-int[,] ints = new int[4, 4];
-int[,] ints1 = new int[4, 4];
+
 List<int> t1 = new List<int>();
 List<int> t2 = new List<int>();
 List<double> t3 = new List<double>();
 int r = 0;
-double[,] matrix1 = new double[19, 19];
-Console.WriteLine("Enter i | j");
-int[,] matrix = new int[,] { { 1, 2 }, { 1, 12 }, { 1, 16 }, { 1, 17 }, { 2, 11 }, { 2, 14 }, { 3, 6 }, { 4, 19 }, { 5, 7 }, { 6, 14 }, { 7, 0 }, { 8, 0 }, { 9, 0 }, { 10, 0 }, { 11, 18 }, { 12, 8 }, { 12, 19 }, { 13, 3 }, { 13, 11 }, { 13, 9 }, { 13, 15 }, { 14, 7 }, { 15, 19 }, { 16, 9 }, { 16, 10 }, { 17, 18 }, { 18, 0 }, { 19, 0 }, { 13, 4 }, { 13, 5 }, { 9, 19 } };
-//for (int i = 0; i < 28; i++)
-//{
-//    for (int j = 0; j < 2; j++)
-//    {
+double k_mo_mij = 0;
+Console.WriteLine("Nermucel gagatneri tiv@");
+int n = int.Parse(Console.ReadLine());
 
-//        matrix[i, j] = int.Parse(Console.ReadLine());
-//    }
-//}
+int[,] matrix = new int[,] { { 1, 2 }, { 1, 12 }, { 1, 16 }, { 1, 17 }, { 2, 11 }, { 2, 14 }, { 3, 6 }, { 4, 19 }, { 5, 7 }, { 6, 14 }, { 7, 0 }, { 8, 0 }, { 9, 0 }, { 10, 0 }, { 11, 18 }, { 12, 8 }, { 12, 19 }, { 13, 3 }, { 13, 11 }, { 13, 9 }, { 13, 15 }, { 14, 7 }, { 15, 19 }, { 16, 9 }, { 16, 10 }, { 17, 18 }, { 18, 0 }, { 19, 0 }, { 13, 4 }, { 13, 5 }, { 9, 19 } };
+//int[,] matrix = new int[,] { { 1, 9 }, { 2, 5 }, { 2, 4 }, { 3, 6 }, { 3, 8 }, { 3, 13 }, { 4, 7 }, { 4, 14 }, { 6, 10 }, { 7, 10 }, { 8, 16 }, { 9, 0 }, { 10, 0 }, { 11, 15 }, { 11, 12 }, { 12, 14 }, { 13, 17 }, { 14, 9 }, { 15, 8 }, { 15, 18 }, { 16, 0 }, { 17, 0 }, { 18, 16 }, { 5, 6 } };
+double[,] matrix1 = AMatrix(matrix, n, out r);
+
+static void CMatrix(double[,] matrix)
+{
+    Console.WriteLine("Enter i | j");
+    for (int i = 0; i < matrix.GetLongLength(0); i++)
+    {
+        for (int j = 0; j < matrix.GetLongLength(1); j++)
+        {
+
+            matrix[i, j] = int.Parse(Console.ReadLine());
+        }
+    }
+}
 
 Console.WriteLine("i | j");
+for (int i = 0; i < matrix.GetLongLength(0); i++)
+{
+    for (int j = 0; j < 2; j++)
+    {
+        Console.Write($"{matrix[i, j]}  ");
+    }
+    Console.WriteLine();
+}
+
 static int T6(int[,] matrix, List<double> ints)
 {
     int count = 0;
-    //for (int i = 0; i < matrix.GetLongLength(0); i++)
-    //{
     for (int j = 0; j < matrix.GetLongLength(0); j++)
     {
         if (ints.Contains(matrix[j, 0]) && matrix[j, 1] != 0)
@@ -30,8 +45,6 @@ static int T6(int[,] matrix, List<double> ints)
             count++;
         }
     }
-
-    //}
     return count;
 }
 static int T5(double[,] matrix, List<int> t2)
@@ -55,14 +68,7 @@ static int T5(double[,] matrix, List<int> t2)
     }
     return count;
 }
-for (int i = 0; i < 31; i++)
-{
-    for (int j = 0; j < 2; j++)
-    {
-        Console.Write($"{matrix[i, j]}  ");
-    }
-    Console.WriteLine();
-}
+
 static List<int> T1(int[,] matrix)
 {
     List<int> t1 = new List<int>();
@@ -149,16 +155,21 @@ for (int i = 0; i < t3.Count; i++)
 Console.WriteLine($"t1 = {t1.Count}");
 Console.WriteLine($"t2 = {t2.Count}");
 Console.WriteLine($"t3 = {t3.Count}");
-
-for (int i = 0; i < matrix.GetLength(0); i++)
+double[,] AMatrix(int[,] matrix, int n, out int r)
 {
-    if (matrix[i,1]!= 0)
+    r = 0;
+    double[,] matrix2 = new double[n, n];
+    for (int i = 0; i < matrix.GetLength(0); i++)
     {
-        r++;
+        if (matrix[i, 1] != 0)
+        {
+            r++;
+        }
+        if (matrix[i, 1] == 0)
+            continue;
+        matrix2[matrix[i, 0] - 1, matrix[i, 1] - 1] = 1;
     }
-    if (matrix[i, 1] == 0)
-        continue;
-    matrix1[matrix[i, 0] - 1, matrix[i, 1] - 1] = 1;
+    return matrix2;
 }
 
 Console.WriteLine();
@@ -176,6 +187,7 @@ do
     int t7 = t4 - count;
     Console.WriteLine($"t7({q}) = {t7}");
     Console.WriteLine($"k_mo = {(double)t7 / t4}");
+    k_mo_mij += (double)t7 / t4;
     q++;
     matrix2 = Multiply(A, B);
     sumMatrix = SumMatrix(A, B);
@@ -190,11 +202,14 @@ int t5 = T5(matrix1, t2);
 Console.WriteLine($"t5={t5}");
 Console.WriteLine($"t6 = {t6}");
 Console.WriteLine($"K(krk) = {(double)2 * t6 / (t3.Count * (t3.Count - 1))}");
-Console.WriteLine($"K(n_nk)={(double)t5/r}");
-Console.WriteLine($"K(m) ={ (double)t2.Count /19}");
-for (int i = 0; i < 19; i++)
+Console.WriteLine($"K(n_nk)={(double)t5 / r}");
+Console.WriteLine($"K(m) ={(double)t2.Count / n}");
+Console.WriteLine($"k_mo_mij={k_mo_mij / (count - 1)}");
+
+Console.WriteLine("Sum of all Matix");
+for (int i = 0; i < matrix1.GetLongLength(0); i++)
 {
-    for (int j = 0; j < 19; j++)
+    for (int j = 0; j < matrix1.GetLongLength(0); j++)
     {
         Console.Write($"{sumMatrix[i, j]} ");
     }
