@@ -11,9 +11,10 @@ Console.WriteLine("Nermucel gagatneri tiv@");
 int n = int.Parse(Console.ReadLine());
 List<int> col = new List<int>();
 List<int> rang = new List<int>();
-
 int[,] matrix = new int[,] { { 1, 2 }, { 1, 12 }, { 1, 16 }, { 1, 17 }, { 2, 11 }, { 2, 14 }, { 3, 6 }, { 4, 19 }, { 5, 7 }, { 6, 14 }, { 7, 0 }, { 8, 0 }, { 9, 0 }, { 10, 0 }, { 11, 18 }, { 12, 8 }, { 12, 19 }, { 13, 3 }, { 13, 11 }, { 13, 9 }, { 13, 15 }, { 14, 7 }, { 15, 19 }, { 16, 9 }, { 16, 10 }, { 17, 18 }, { 18, 0 }, { 19, 0 }, { 13, 4 }, { 13, 5 }, { 9, 19 } };
-//int[,] matrix = new int[,] { { 1, 9 }, { 2, 5 }, { 2, 4 }, { 3, 6 }, { 3, 8 }, { 3, 13 }, { 4, 7 }, { 4, 14 }, { 6, 10 }, { 7, 10 }, { 8, 16 }, { 9, 0 }, { 10, 0 }, { 11, 15 }, { 11, 12 }, { 12, 14 }, { 13, 17 }, { 14, 9 }, { 15, 8 }, { 15, 18 }, { 16, 0 }, { 17, 0 }, { 18, 16 }, { 5, 6 } };
+//int[,] matrix = new int[,] { { 1, 5 }, { 1, 13 }, { 2, 7 }, { 2, 8 }, { 2, 11 }, { 3, 9 }, { 3, 6 }, { 3, 11 }, { 4, 10 }, { 4, 11 }, { 4, 17 }, { 5, 7 }, { 6, 5 }, { 7, 12 }, { 8, 12 }, { 9, 8 }, { 10, 8 }, { 11, 22 }, { 11, 24 }, { 11, 25 }, { 11, 21 }, { 12, 15 }, { 13, 14 }, { 14, 23}, { 14, 22 }, { 15, 14}, { 15, 19 }, { 16, 15 }, { 17, 16},{18,25},{18,20},{18,21},{19,24},{19,25},{20,0},{21,0},{22,0},{23,0},{24,0},{25,0},{1,11},{15,18} };
+
+//int[,] matrix = new int[,] { { 1, 6 }, { 1, 10 }, { 2, 6 }, { 2, 5}, { 2, 11}, { 3, 9 }, { 3, 7 }, { 4, 14 }, { 5, 16 }, { 5, 4 }, { 6, 13 }, { 7, 17 }, { 8, 20 }, { 9, 8 }, { 10, 19 }, { 11, 18 }, { 12, 15 }, { 12, 10 }, { 13, 20 }, { 14, 16 }, { 15, 16 }, { 15, 8 }, {16,0}, { 17, 0 },{18,0},{19,0},{19,18},{17,19},{20,0} };
 double[,] matrix1 = AMatrix(matrix, n, out r);
 
 static double[,] CMatrix(double[,] matrix)
@@ -227,14 +228,14 @@ Console.WriteLine($"K(krk) = {(double)2 * t6 / (t3.Count * (t3.Count - 1))}");
 Console.WriteLine($"K(n_nk)={(double)t5 / r}");
 Console.WriteLine($"K(m) ={(double)t2.Count / n}");
 Console.WriteLine($"k_mo_mij={k_mo_mij / (count - 1)}");
-Console.WriteLine($"$={Math.Abs((double)t2.Count / n - k_mo_mij / (count - 1))}");
+Console.WriteLine($"Pastatghti racionalutyun={Math.Abs((double)t2.Count / n - k_mo_mij / (count - 1))}");
 Console.WriteLine("Pastatghti karg");
 for (int i = 0; i < rang.Count; i++)
 {
     Console.WriteLine($"{col[i]}-{rang[i]}");
 }
 
-Console.WriteLine("Sum of all Matix");
+Console.WriteLine("Hasanelutyan matrix");
 for (int i = 0; i < matrix1.GetLongLength(0); i++)
 {
     for (int j = 0; j < matrix1.GetLongLength(0); j++)
